@@ -20,12 +20,12 @@ bool customer_login() {
     file = fopen("CustomerLogin.txt", "r");
     while (fgets(line, 50, file) != NULL) {                                 // 
         char* token = strtok(line, ",");                                    //
-char stored_username[50];                                                   // Allocate memory for username
-strcpy(stored_username, token);                                             // Copy username to allocated memory
-
-token = strtok(NULL, ",");
-char stored_password[50]; // Allocate memory for password
-strcpy(stored_password, token); // Copy password to allocated memory
+        char stored_username[50];                                                   // Allocate memory for username
+        strcpy(stored_username, token);                                             // Copy username to allocated memory
+        
+        token = strtok(NULL, ",");
+        char stored_password[50]; // Allocate memory for password
+        strcpy(stored_password, token); // Copy password to allocated memory
 
         // Compare the entered username and password with the stored ones
         if (strcmp(username, stored_username) == 0 && strcmp(password, stored_password) == 0) {
@@ -67,5 +67,20 @@ bool admin_login() {
         // You gyatta do this gangy
 }
 }
+int main() {
+    int i_operation;
+    printf("1 : admin login\n2 : customer login\n> ");
+    scanf("%d", &i_operation);
+    switch (i_operation) {
+        case 1:
+        admin_login();
+        break;
+        
+        case 2:
+        customer_login();
+        break;
 
-int main() { admin_login(); }
+        default:
+        break;
+    }
+}
