@@ -3,6 +3,21 @@
 #include <string.h>
 #include <stdbool.h>
 
+void makeUser() {
+    FILE* file;
+    char username[50];
+    char password[50];
+
+    printf("What's the username?\n> ");
+    scanf("%s", username);
+    printf("What's the password?\n> ");
+    scanf("%s", password);
+
+    file = file = fopen("CustomerLogin.txt", "w");
+    fprintf(file, "%s,%s", username, password);
+    printf("User made successfully");
+}
+
 //Customer Login Function
 bool customer_login() {
     FILE* file;
@@ -18,8 +33,8 @@ bool customer_login() {
 
     // Check if the entered information is part of the customer file
     file = fopen("CustomerLogin.txt", "r");
-    while (fgets(line, 50, file) != NULL) {                                 // 
-        char* token = strtok(line, ",");                                    //
+    while (fgets(line, 50, file) != NULL) {                                         // 
+        char* token = strtok(line, ",");                                            //
         char stored_username[50];                                                   // Allocate memory for username
         strcpy(stored_username, token);                                             // Copy username to allocated memory
         
@@ -64,7 +79,7 @@ bool admin_login() {
         strcpy(stored_password, token); // Copy password to allocated memory
         
         // Compare the enterred username and password with the stored ones
-        // You gyatta do this gangy
+        printf(" It works i think lol ");
 }
 }
 int main() {
@@ -80,6 +95,10 @@ int main() {
         customer_login();
         break;
 
+        case 3:
+        makeUser();
+        break;
+        
         default:
         break;
     }
